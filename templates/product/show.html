@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+ {{ product.name }}
+{% endblock %}
+{% block content %}
+ <div class="products">
+ <img src="{% if product.image %}{{ product.image.url }}{% else %}
+ {% static "img/no_image.png" %}{% endif %}">
+ <h2>
+    <a href="{{ product.category.get_absolute_url }}">
+    {{ product.category }}
+    </a>
+</h2>
+ <h2>{{ product.name }}</h2>
+    
+ <p class="price">${{ product.new_price }}</p>
+    
+ {{ product.description|linebreaks }}
+ <form action="/cart/add/1/" method="post">
+
+    
+<label for="id_quantity">Кол-во:</label>
+
+  
+    <select name="quantity" id="id_quantity">
+        <option value="1">1</option>
+
+        <option value="2">2</option>
+
+        <option value="3">3</option>
+
+        <option value="4">4</option>
+
+        <option value="5">5</option>
+
+        <option value="6">6</option>
+
+        <option value="7">7</option>
+
+        <option value="8">8</option>
+
+        <option value="9">9</option>
+
+        <option value="10">10</option>
+
+        <option value="11">11</option>
+
+        <option value="12">12</option>
+
+        <option value="13">13</option>
+
+        <option value="14">14</option>
+
+        <option value="15">15</option>
+
+        <option value="16">16</option>
+
+        <option value="17">17</option>
+
+        <option value="18">18</option>
+
+        <option value="19">19</option>
+
+        <option value="20">20</option>
+
+    </select>
+  
+  
+    <input type="hidden" name="override" value="False" id="id_override">
+  
+   
+
+    <input type="hidden" name="csrfmiddlewaretoken" value="zFwk7Z9smdvwkfwoFUr4ebYq2aTwSRbchdcENybCnxhp41pCIMcw1RrObkPmSjdr">
+    <input type="submit" value="Добавить в корзину">
+    {% csrf_token %}
+</form>
+ </div>
+{% endblock %}

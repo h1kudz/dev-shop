@@ -1,0 +1,50 @@
+{% load static %}
+
+<div id="header">
+  <!-- Nav -->
+    <nav id="nav">
+      <ul>
+          <li><a href="{% url 'product:home' %}">
+            Главная страница
+            </a>
+          </li>
+        <li>
+         
+            <a href="{% url "product:home" %}">Товары</a>
+        
+          <ul>
+            
+            {% for c in categories %}
+            <li >
+                <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+            </li>
+          {% endfor %}
+          </ul>
+        </li>
+        <li><a href="#facebook">Контакты</a></li>
+        <li>
+        
+          <div class="cart">
+         
+            {% with total_items=cart|length %}
+              {% if total_items > 0 %}
+              <a href="{% url "cart:cart_detail" %}">
+              Количество {{ total_items }},
+              Итого ${{ cart.get_total_price }}
+              </a>
+            {% elif not order %}
+              Пустая корзина 
+            {% endif %}
+            {% endwith %}   
+         </div>
+        
+        </li>
+      
+        <li class="button"><a href="">Вход </a> </li>
+       <li class="button"> <a href="">Регистрация</a></li>
+      </ul>
+    
+    </nav>
+  
+
+</div>
